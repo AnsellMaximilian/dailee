@@ -1,24 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
-function App() {
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+
+import Header from './components/Header';
+
+import './App.css';
+import { auth } from './firebase/config';
+
+interface Props {
+
+}
+
+const App: React.FC<Props> = () => {
+
+  const [user, setUser] = useState(auth.currentUser)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    })
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header/>
+
+        <div>{error}</div>
+
+        <Switch>
+          <Route path="/signup">
+            { user ? <Redirect to="/"/> : <SignUp setError={setError}/>}
+          </Route>
+
+          <Route path="/signin">
+            { user ? <Redirect to="/"/> : <SignIn setError={setError}/>}
+          </Route> 
+        </Switch>
+      </Router>
     </div>
   );
 }

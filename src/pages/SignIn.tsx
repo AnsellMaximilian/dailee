@@ -1,0 +1,33 @@
+import React, {useState} from 'react'
+import {auth} from '../firebase/config';
+
+interface Props {
+    setError: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function SignIn({setError}: Props) {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const submit: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+        e.preventDefault();
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => setError(''))
+            .catch((err: {message: string}) => setError(err.message));
+    }
+
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        if(e.target.name === "email") setEmail(e.target.value);
+        else if(e.target.name === "password") setPassword(e.target.value);
+    }
+
+    return (
+        <div>
+            <form>
+                <input type="email" placeholder="Email" name="email" value={email} onChange={handleChange}/>
+                <input type="password" placeholder="Password" name="password" value={password} onChange={handleChange}/>
+                <button onClick={submit}>Sign In</button>
+            </form>
+        </div>
+    )
+}
