@@ -9,7 +9,7 @@ export default function SignUp({setError}: Props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const submit: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         auth.createUserWithEmailAndPassword(email, password)
             .then(() => setError(''))
@@ -23,10 +23,10 @@ export default function SignUp({setError}: Props) {
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input type="email" placeholder="Email" name="email" value={email} onChange={handleChange}/>
                 <input type="password" placeholder="Password" name="password" value={password} onChange={handleChange}/>
-                <button onClick={submit}>Sign Up</button>
+                <button>Sign Up</button>
             </form>
         </div>
     )
