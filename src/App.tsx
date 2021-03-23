@@ -1,22 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { ThemeProvider } from '@material-ui/styles';
 
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import Home from './pages/Home';
 
 import Header from './components/Header';
 
 import './App.css';
 import { auth, firestore } from './firebase/config';
-import Home from './pages/Home';
 import { Task } from './types';
+import theme from './theme';
 
 const App = () => {
 
   const [user, setUser] = useState(auth.currentUser)
-
   const [tasks, setTasks] = useState<Task[]>([])
-
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -49,28 +49,30 @@ const App = () => {
   }, [user])
 
   return (
-    <div className="App">
-      <Router>
-        <Header/>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Header/>
 
-        <div>{error}</div>
+          <div>{error}</div>
 
-        <Switch>
-          <Route exact path="/">
-            <Home tasks={tasks}/>
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Home tasks={tasks}/>
+            </Route>
 
-          <Route exact path="/signup">
-            { user ? <Redirect to="/"/> : <SignUp setError={setError}/>}
-          </Route>
+            <Route exact path="/signup">
+              { user ? <Redirect to="/"/> : <SignUp setError={setError}/>}
+            </Route>
 
-          <Route exact path="/signin">
-            { user ? <Redirect to="/"/> : <SignIn setError={setError}/>}
-          </Route> 
-        </Switch>
+            <Route exact path="/signin">
+              { user ? <Redirect to="/"/> : <SignIn setError={setError}/>}
+            </Route> 
+          </Switch>
 
-      </Router>
-    </div>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 

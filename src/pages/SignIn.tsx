@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {auth} from '../firebase/config';
+import { Button, Container, TextField } from '@material-ui/core'
 
 interface Props {
     setError: React.Dispatch<React.SetStateAction<string>>
@@ -22,12 +23,12 @@ export default function SignIn({setError}: Props) {
     }
 
     return (
-        <div>
+        <Container maxWidth="xs">
             <form onSubmit={handleSubmit}>
-                <input type="email" placeholder="Email" name="email" value={email} onChange={handleChange}/>
-                <input type="password" placeholder="Password" name="password" value={password} onChange={handleChange}/>
-                <button>Sign In</button>
+                <TextField required fullWidth type="email" margin="normal" variant="outlined" label="Email" name="email" value={email} onChange={handleChange}/>
+                <TextField required fullWidth type="password" margin="normal" variant="outlined" label="Password" name="password" value={password} onChange={handleChange}/>
+                <Button fullWidth variant="contained" color="primary" type="submit">Sign In</Button>
             </form>
-        </div>
+        </Container>
     )
 }

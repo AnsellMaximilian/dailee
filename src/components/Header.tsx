@@ -1,34 +1,53 @@
+import { AppBar, Toolbar, Typography, Link as LinkUi, makeStyles } from '@material-ui/core'
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { auth } from '../firebase/config'
 
+const useStyles = makeStyles(theme => ({
+    link: {
+        color: 'inherit',
+        cursor: 'pointer',
+        margin: theme.spacing(0, 1),
+        textTransform: 'uppercase'
+    },
+
+    activeLink: {
+        color: '#DDD',
+        textDecoration: 'underline'
+    },
+
+    toolbar: {
+        flexWrap: 'wrap'
+    },
+
+    userInfo: {
+        flexGrow: 1,
+        textAlign: 'left'
+    }
+}))
+
 export default function Header() {
+
+    const classes = useStyles();
     
     return (
-        <header>
-            <nav>
-                <Link to="/">Home</Link>
-            </nav>
-            <div>
-                { auth.currentUser?.email }
-            </div>
-            <nav>
-                <ul>
+        <AppBar position="static">
+            <Toolbar className={classes.toolbar}>
+                <Typography className={classes.userInfo}>
+                    {auth.currentUser?.email}
+                </Typography>
+                <nav>
                     {!auth.currentUser ?
                         <>
-                            <li>
-                                <Link to="/signup">Sign Up</Link>
-                            </li>
-                            <li>
-                                <Link to="/signin">Sign In</Link>
-                            </li>
+                            <NavLink to="/signup" className={classes.link} activeClassName={classes.activeLink}>Sign Up</NavLink>
+                            <NavLink to="/signin" className={classes.link} activeClassName={classes.activeLink}>Sign In</NavLink>
                         </>
                         :           
-                        <li onClick={() => auth.signOut()}>Sign Out</li>
+                        <LinkUi color="inherit" className={classes.link} onClick={() => auth.signOut()}>Sign Out</LinkUi>
                     }
-                </ul>
-            </nav>
-        </header>
+                </nav>
+            </Toolbar>
+        </AppBar>
     )
 }
