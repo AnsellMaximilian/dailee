@@ -1,9 +1,15 @@
-import { IconButton, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core'
+import { Collapse, IconButton, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, makeStyles, Typography } from '@material-ui/core'
 import { Edit as EditIcon } from '@material-ui/icons'
 import React, { useState } from 'react'
 import { firestore } from '../firebase/config'
 import { Task } from '../types'
 import CheckBox from './CheckBox'
+
+interface Props {
+    isOpen: boolean;
+    task: Task;
+    setOpenTask: React.Dispatch<React.SetStateAction<string>>;
+}
 
 const useStyles = makeStyles(theme => ({
     taskItem: {
@@ -15,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function TaskItem({task}: {task: Task}) {
+export default function TaskItem({task, isOpen, setOpenTask}: Props) {
 
     const classes = useStyles();
 
@@ -30,8 +36,15 @@ export default function TaskItem({task}: {task: Task}) {
         })
     }
 
+    const toggleDetails = () => {
+        // if details already open; close
+        if(isOpen) setOpenTask('');
+        else setOpenTask(task.id);
+    }
+
     return (
-        <ListItem className={`${classes.taskItem} ${checked && classes.deleted}`}>
+        <>
+        <ListItem button className={`${classes.taskItem} ${checked && classes.deleted}`} onClick={toggleDetails}>
             <ListItemIcon>  
                 <CheckBox checked={checked} completeTask={completeTask}/>
             </ListItemIcon>
@@ -42,5 +55,11 @@ export default function TaskItem({task}: {task: Task}) {
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
+         <Collapse in={isOpen}>
+            <Typography>
+                {task.description}
+            </Typography>
+        </Collapse>
+        </>
     )
 }
