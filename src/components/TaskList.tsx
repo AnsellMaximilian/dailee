@@ -1,3 +1,4 @@
+import { List } from '@material-ui/core'
 import React from 'react'
 import { Task } from '../types'
 import TaskItem from './TaskItem'
@@ -8,9 +9,9 @@ export default function TaskList({tasks}: {tasks: Task[]}) {
 
     return (
         <div>
-            <ul>
+            <List style={{overflowX: "hidden"}}>
                 {taskItems}
-            </ul>
+            </List>
         </div>
     )
 }

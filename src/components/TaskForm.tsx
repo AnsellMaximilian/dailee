@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { firestore } from '../firebase/config';
 import firebase from 'firebase';
 import { Button, Collapse, Container, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
+// import { ExpandMore } from '@material-ui/icons';
 
 interface Props {
     user: firebase.User
