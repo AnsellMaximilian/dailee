@@ -73,16 +73,16 @@ const App = () => {
           <div>{error}</div>
 
           <Switch>
-            <Route exact path="/">
+            <Route exact path={process.env.PUBLIC_URL + "/"}>
               <Home tasks={tasks} reserveTasks={reserveTasks}/>
             </Route>
 
-            <Route exact path="/signup">
-              { user ? <Redirect to="/"/> : <SignUp setError={setError}/>}
+            <Route exact path={process.env.PUBLIC_URL + "/signup"}>
+              { user ? <Redirect to={process.env.PUBLIC_URL + "/"}/> : <SignUp setError={setError}/>}
             </Route>
 
-            <Route exact path="/signin">
-              { user ? <Redirect to="/"/> : <SignIn setError={setError}/>}
+            <Route exact path={process.env.PUBLIC_URL + "/signin"}>
+              { user ? <Redirect to={process.env.PUBLIC_URL + "/"}/> : <SignIn setError={setError}/>}
             </Route> 
           </Switch>
 

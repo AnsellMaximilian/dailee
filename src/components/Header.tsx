@@ -40,8 +40,8 @@ export default function Header() {
                 <nav>
                     {!auth.currentUser ?
                         <>
-                            <NavLink to="/signup" className={classes.link} activeClassName={classes.activeLink}>Sign Up</NavLink>
-                            <NavLink to="/signin" className={classes.link} activeClassName={classes.activeLink}>Sign In</NavLink>
+                            <NavLink to={process.env.PUBLIC_URL + "/signup"} className={classes.link} activeClassName={classes.activeLink}>Sign Up</NavLink>
+                            <NavLink to={process.env.PUBLIC_URL + "/signin"} className={classes.link} activeClassName={classes.activeLink}>Sign In</NavLink>
                         </>
                         :           
                         <LinkUi color="inherit" className={classes.link} onClick={() => auth.signOut()}>Sign Out</LinkUi>
