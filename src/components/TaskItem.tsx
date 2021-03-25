@@ -1,4 +1,4 @@
-import { Collapse, IconButton, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, makeStyles, Typography } from '@material-ui/core'
+import { Box, Collapse, IconButton, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, makeStyles, Typography } from '@material-ui/core'
 import { Edit as EditIcon } from '@material-ui/icons'
 import React, { useState } from 'react'
 import { firestore } from '../firebase/config'
@@ -14,11 +14,22 @@ interface Props {
 
 const useStyles = makeStyles(theme => ({
     taskItem: {
-        transition: "all 0.5s",
+        transition: "transform 0.5s",
+        '&:hover': {
+            backgroundColor: theme.palette.action.hover
+        }
     },
     deleted: {
         transform: "translateX(200%)",
         position: "relative"
+    },
+
+    detail: {
+        whiteSpace: 'pre-line',
+        textAlign: 'left',
+        padding: theme.spacing(0, 4),
+        borderRadius: theme.shape.borderRadius,
+        border: `1.5px solid ${theme.palette.divider}`
     }
 }))
 
@@ -57,9 +68,11 @@ export default function TaskItem({task, isOpen, setOpenTask, setOpenTaskDetail}:
             </ListItemSecondaryAction>
         </ListItem>
          <Collapse in={isOpen}>
-            <Typography>
-                {task.description}
-            </Typography>
+            <Box className={task.description && classes.detail} borderTop={0}>
+                <Typography>
+                    {task.description}
+                </Typography>
+            </Box>
         </Collapse>
         </>
     )
