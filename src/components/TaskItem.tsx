@@ -9,6 +9,7 @@ interface Props {
     isOpen: boolean;
     task: Task;
     setOpenTask: React.Dispatch<React.SetStateAction<string>>;
+    setOpenTaskDetail: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function TaskItem({task, isOpen, setOpenTask}: Props) {
+export default function TaskItem({task, isOpen, setOpenTask, setOpenTaskDetail}: Props) {
 
     const classes = useStyles();
 
@@ -50,7 +51,7 @@ export default function TaskItem({task, isOpen, setOpenTask}: Props) {
             </ListItemIcon>
             <ListItemText primary={task.title}/>
             <ListItemSecondaryAction>
-                <IconButton>
+                <IconButton onClick={() => setOpenTaskDetail(task.id)}>
                     <EditIcon color="primary"/>
                 </IconButton>
             </ListItemSecondaryAction>

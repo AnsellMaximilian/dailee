@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { firestore } from '../firebase/config';
 import firebase from 'firebase';
-import { Button, Collapse, Container, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, Collapse, Container, FormControlLabel, Grid, makeStyles, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 // import { ExpandMore } from '@material-ui/icons';
 
 interface Props {
@@ -16,6 +16,12 @@ const useStyles = makeStyles(theme => ({
 
     formContainer: {
         margin: theme.spacing(2, 'auto')
+    },
+
+    formMode: {
+        display: 'flex',
+        justifyContent: 'start',
+        flexDirection: 'row'
     }
 }))
 
@@ -26,6 +32,7 @@ export default function TaskForm({user}: Props) {
     const [description, setDescription] = useState('');
     const [timeFrame, setTimeFrame] = useState('');
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [formMode, setformMode] = useState<'tasks' | 'reserveTasks'>('tasks');
 
     const handleChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = (e) => {
         let value = e.target.value
@@ -34,6 +41,11 @@ export default function TaskForm({user}: Props) {
         else if(e.target.name === 'description') setDescription(value)
         else if(e.target.name === 'time-frame') setTimeFrame(value)
     }
+
+    const handleFormModeChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        let value: 'tasks' | 'reserveTasks' = e.target.value === 'reserveTasks' ? 'reserveTasks' : 'tasks';
+        setformMode(value); 
+    };
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
@@ -45,7 +57,7 @@ export default function TaskForm({user}: Props) {
             timeFrame
         }
 
-        firestore.collection('tasks').add(task)
+        firestore.collection(formMode).add(task)
             .then()
             .catch();
         
@@ -66,6 +78,16 @@ export default function TaskForm({user}: Props) {
             </Button>
             <Collapse in={isFormOpen}>
                 <Container maxWidth="xs" className={classes.formContainer}>
+                    <RadioGroup 
+                        aria-label="formMode" 
+                        name="form-mode" 
+                        value={formMode} 
+                        onChange={handleFormModeChange}
+                        className={classes.formMode}
+                    >
+                        <FormControlLabel value="tasks" control={<Radio />} label="Tasks" />
+                        <FormControlLabel value="reserveTasks" control={<Radio />} label="Reserve Tasks" />
+                    </RadioGroup>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={1}>
                             <Grid item xs={8}>

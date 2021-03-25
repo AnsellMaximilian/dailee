@@ -17,6 +17,7 @@ const App = () => {
 
   const [user, setUser] = useState(auth.currentUser)
   const [tasks, setTasks] = useState<Task[]>([])
+  const [reserveTasks, setReserveTasks] = useState<Task[]>([])
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -39,11 +40,26 @@ const App = () => {
               timeFrame: 'Unavailable',
               ...docSnapshot.data(),
             };
-
             return task;
           })
-
           setTasks(tasks);
+        })
+
+      firestore.collection('reserveTasks')
+        .where('user', '==', user.uid)
+        .onSnapshot((snapshot) => {
+          let reserveTasks: Task[] = snapshot.docs.map(docSnapshot => {
+            let reserveTask: Task = {
+              id: docSnapshot.id,
+              user: user.uid,
+              title: 'Unavailable',
+              description: 'Unavailable',
+              timeFrame: 'Unavailable',
+              ...docSnapshot.data(),
+            };
+            return reserveTask;
+          })
+          setReserveTasks(reserveTasks);
         })
     }
   }, [user])
@@ -58,7 +74,7 @@ const App = () => {
 
           <Switch>
             <Route exact path="/">
-              <Home tasks={tasks}/>
+              <Home tasks={tasks} reserveTasks={reserveTasks}/>
             </Route>
 
             <Route exact path="/signup">
