@@ -39,7 +39,8 @@ export default function TaskItem({task, isOpen, setOpenTask, setOpenTaskDetail}:
 
     const [checked, setChecked] = useState(false);
 
-    const completeTask = () => {
+    const completeTask: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+        e.stopPropagation();
         setChecked(true);
         (new Promise<void>((resolve, reject) => {
             setTimeout(() => resolve(), 500)

@@ -27,7 +27,8 @@ export default function TaskReserveItem({reserveTask, user, setOpenTaskDetail}: 
 
     const [deleted, setDeleted] = useState(false)
 
-    const deleteReserveTask = () => {
+    const deleteReserveTask: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+        e.stopPropagation();
         setDeleted(true);
 
         setTimeout(() => {
@@ -35,7 +36,8 @@ export default function TaskReserveItem({reserveTask, user, setOpenTaskDetail}: 
         }, 500);
     }
 
-    const transferReserveTask = () => {
+    const transferReserveTask: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+        e.stopPropagation();
         firestore.collection('tasks').add({
             title: reserveTask.title,
             description: reserveTask.description,
