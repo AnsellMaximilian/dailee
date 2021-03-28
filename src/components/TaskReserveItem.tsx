@@ -11,9 +11,12 @@ interface Props {
     setOpenTaskDetail: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const useStyles = makeStyles(thme => ({
+const useStyles = makeStyles(theme => ({
     reserveTaskItem: {
         transition: "all 0.5s",
+        '&:hover': {
+            backgroundColor: theme.palette.action.hover
+        }
     },
     deleted: {
         transform: "translateX(-200%)",
