@@ -5,3 +5,8 @@ export interface Task {
     description: string;
     timeFrame: string;
 }
+
+export interface Message {
+    type: 'error' | 'info' | 'success';
+    content: string;
+}

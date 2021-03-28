@@ -1,20 +1,21 @@
 import React, {useState} from 'react'
 import {auth} from '../firebase/config';
 import { Button, Container, TextField } from '@material-ui/core'
+import { Message } from '../types';
 
 interface Props {
-    setError: React.Dispatch<React.SetStateAction<string>>
+    setMessage: React.Dispatch<React.SetStateAction<Message | null>>
 }
 
-export default function SignIn({setError}: Props) {
+export default function SignIn({setMessage}: Props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
-            .then(() => setError(''))
-            .catch((err: {message: string}) => setError(err.message));
+            .then(() => setMessage({type: 'success', content: 'Success'}))
+            .catch((err: {message: string}) => setMessage({type: 'error', content: err.message}));
     }
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {

@@ -10,15 +10,16 @@ import Header from './components/Header';
 
 import './App.css';
 import { auth, firestore } from './firebase/config';
-import { Task } from './types';
+import { Message as MessageType, Task } from './types';
 import theme from './theme';
+import Message from './components/Message';
 
 const App = () => {
 
   const [user, setUser] = useState(auth.currentUser)
   const [tasks, setTasks] = useState<Task[]>([])
   const [reserveTasks, setReserveTasks] = useState<Task[]>([])
-  const [error, setError] = useState('')
+  const [message, setMessage] = useState<MessageType | null>(null);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -70,22 +71,26 @@ const App = () => {
         <Router>
           <Header/>
 
-          <div>{error}</div>
-
           <Switch>
             <Route exact path={process.env.PUBLIC_URL + "/"}>
               <Home tasks={tasks} reserveTasks={reserveTasks}/>
             </Route>
 
             <Route exact path={process.env.PUBLIC_URL + "/signup"}>
-              { user ? <Redirect to={process.env.PUBLIC_URL + "/"}/> : <SignUp setError={setError}/>}
+              { user ? <Redirect to={process.env.PUBLIC_URL + "/"}/> : <SignUp setMessage={setMessage}/>}
             </Route>
 
             <Route exact path={process.env.PUBLIC_URL + "/signin"}>
-              { user ? <Redirect to={process.env.PUBLIC_URL + "/"}/> : <SignIn setError={setError}/>}
+              { user ? <Redirect to={process.env.PUBLIC_URL + "/"}/> : <SignIn setMessage={setMessage}/>}
             </Route> 
           </Switch>
-
+          <Message 
+            open={!!message} 
+            message={message}
+            handleClose={() => {
+              setMessage(null);
+            }}
+          />
         </Router>
       </div>
     </ThemeProvider>
