@@ -39,6 +39,7 @@ export default function Home({ tasks, reserveTasks, setMessage }: Props) {
                         open={isTaskReserveOpen} 
                         user={auth.currentUser} 
                         setMessage={setMessage}
+                        setIsTaskReserveOpen={setIsTaskReserveOpen}
                     />
                     <Fab 
                         color="primary" 

@@ -1,4 +1,4 @@
-import { Box, Container, List, makeStyles, Slide, Typography } from '@material-ui/core'
+import { Box, ClickAwayListener, Container, List, makeStyles, Slide, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import theme from '../theme'
 import { Task, Message } from '../types'
@@ -12,6 +12,7 @@ interface Props {
     open: boolean;
     user: firebase.User;
     setMessage: React.Dispatch<React.SetStateAction<Message | null>>;
+    setIsTaskReserveOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -40,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function TaskReserve({reserveTasks, open, user, setMessage}: Props) {
+export default function TaskReserve({reserveTasks, open, user, setMessage, setIsTaskReserveOpen}: Props) {
     const classes = useStyles();
 
     const [openTaskDetail, setOpenTaskDetail] = useState('');
@@ -65,26 +66,30 @@ export default function TaskReserve({reserveTasks, open, user, setMessage}: Prop
     return (
         <Slide direction={window.innerWidth >= theme.breakpoints.values.sm ? 'left' : 'up'} in={open} mountOnEnter unmountOnExit>
             <Container className={classes.container}>
-                <Box p={1} className={classes.header}>
-                    <Typography>Task Reserve</Typography>
-                </Box>
-                {reserveTasks.length > 0 ?
-                    <>
-                    <List dense>
-                        {reserveTaskItems}
-                    </List>
-                    {!!openTaskDetail &&
-                        <TaskDetail 
-                            task={reserveTasks.filter(task => task.id === openTaskDetail)[0]} 
-                            open={!!openTaskDetail}
-                            handleClose={handleTaskDetailClose}
-                            saveChange={saveChange}
-                        />
-                    }
-                    </>
-                    :
-                    <Typography>Get Yo Tasks</Typography>
-                }
+                <ClickAwayListener onClickAway={() => setIsTaskReserveOpen(false)}>
+                    <div>
+                        <Box p={1} className={classes.header}>
+                            <Typography>Task Reserve</Typography>
+                        </Box>
+                        {reserveTasks.length > 0 ?
+                            <>
+                            <List dense>
+                                {reserveTaskItems}
+                            </List>
+                            {!!openTaskDetail &&
+                                <TaskDetail 
+                                    task={reserveTasks.filter(task => task.id === openTaskDetail)[0]} 
+                                    open={!!openTaskDetail}
+                                    handleClose={handleTaskDetailClose}
+                                    saveChange={saveChange}
+                                />
+                            }
+                            </>
+                            :
+                            <Typography>Get Yo Tasks</Typography>
+                        }
+                    </div>
+                </ClickAwayListener>
             </Container>
         </Slide>
     )
