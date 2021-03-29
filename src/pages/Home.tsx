@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { auth } from '../firebase/config'
 
 import TaskForm from '../components/TaskForm'
-import { Task } from '../types'
+import { Message, Task } from '../types'
 import TaskList from '../components/TaskList'
 import { Fab, makeStyles } from '@material-ui/core'
 import { ListAlt } from '@material-ui/icons'
@@ -11,6 +11,7 @@ import TaskReserve from '../components/TaskReserve'
 interface Props {
     tasks: Task[];
     reserveTasks: Task[];
+    setMessage: React.Dispatch<React.SetStateAction<Message | null>>;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function Home({ tasks, reserveTasks }: Props) {
+export default function Home({ tasks, reserveTasks, setMessage }: Props) {
 
     const classes = useStyles()
 
@@ -33,7 +34,12 @@ export default function Home({ tasks, reserveTasks }: Props) {
                 <div>
                     <TaskForm user={auth.currentUser}/>
                     <TaskList tasks={tasks}/>
-                    <TaskReserve reserveTasks={reserveTasks} open={isTaskReserveOpen} user={auth.currentUser}/>
+                    <TaskReserve 
+                        reserveTasks={reserveTasks} 
+                        open={isTaskReserveOpen} 
+                        user={auth.currentUser} 
+                        setMessage={setMessage}
+                    />
                     <Fab 
                         color="primary" 
                         aria-label="add" 

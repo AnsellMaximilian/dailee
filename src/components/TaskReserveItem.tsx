@@ -2,13 +2,14 @@ import { IconButton, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemTe
 import { Delete, Publish } from '@material-ui/icons'
 import React, { useState } from 'react'
 import { firestore } from '../firebase/config'
-import { Task } from '../types'
+import { Task, Message } from '../types'
 import firebase from 'firebase'
 
 interface Props {
     reserveTask: Task;
     user: firebase.User;
     setOpenTaskDetail: React.Dispatch<React.SetStateAction<string>>;
+    setMessage: React.Dispatch<React.SetStateAction<Message | null>>;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function TaskReserveItem({reserveTask, user, setOpenTaskDetail}: Props) {
+export default function TaskReserveItem({reserveTask, user, setOpenTaskDetail, setMessage}: Props) {
 
     const classes = useStyles();
 
@@ -46,6 +47,9 @@ export default function TaskReserveItem({reserveTask, user, setOpenTaskDetail}: 
             description: reserveTask.description,
             timeFrame: reserveTask.timeFrame,
             user: user.uid
+        })
+        .then(() => {
+            setMessage({type: "success", content: `Reserve Task "${reserveTask.title}" Transferred to Tasks`})
         })
     }
 

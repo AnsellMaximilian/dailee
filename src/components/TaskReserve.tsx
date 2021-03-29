@@ -1,7 +1,7 @@
 import { Box, Container, List, makeStyles, Slide, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import theme from '../theme'
-import { Task } from '../types'
+import { Task, Message } from '../types'
 import TaskReserveItem from './TaskReserveItem'
 import firebase from 'firebase'
 import { firestore } from '../firebase/config'
@@ -11,6 +11,7 @@ interface Props {
     reserveTasks: Task[];
     open: boolean;
     user: firebase.User;
+    setMessage: React.Dispatch<React.SetStateAction<Message | null>>;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function TaskReserve({reserveTasks, open, user}: Props) {
+export default function TaskReserve({reserveTasks, open, user, setMessage}: Props) {
     const classes = useStyles();
 
     const [openTaskDetail, setOpenTaskDetail] = useState('');
@@ -52,7 +53,8 @@ export default function TaskReserve({reserveTasks, open, user}: Props) {
     }
 
     const reserveTaskItems = reserveTasks.map(task => (
-        <TaskReserveItem 
+        <TaskReserveItem
+            setMessage={setMessage}
             reserveTask={task} 
             key={task.id} 
             user={user}

@@ -73,7 +73,11 @@ const App = () => {
 
           <Switch>
             <Route exact path={process.env.PUBLIC_URL + "/"}>
-              <Home tasks={tasks} reserveTasks={reserveTasks}/>
+              <Home 
+                tasks={tasks} 
+                reserveTasks={reserveTasks}
+                setMessage={setMessage}
+              />
             </Route>
 
             <Route exact path={process.env.PUBLIC_URL + "/signup"}>
