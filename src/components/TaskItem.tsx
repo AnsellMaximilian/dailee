@@ -30,6 +30,11 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0, 4),
         borderRadius: theme.shape.borderRadius,
         border: `1.5px solid ${theme.palette.divider}`
+    },
+
+    timeFrame: {
+        color: theme.palette.grey[500],
+        fontSize: "0.85rem"
     }
 }))
 
@@ -55,13 +60,20 @@ export default function TaskItem({task, isOpen, setOpenTask, setOpenTaskDetail}:
         else setOpenTask(task.id);
     }
 
+    const primaryText = (
+        <span>
+            {task.title}
+            {!!(task.timeFrame && task.timeFrame !== "00:00" ) && <span className={classes.timeFrame}> - {task.timeFrame}</span>}
+        </span>
+    )
+
     return (
         <>
         <ListItem button className={`${classes.taskItem} ${checked && classes.deleted}`} onClick={toggleDetails}>
             <ListItemIcon>  
                 <CheckBox checked={checked} completeTask={completeTask}/>
             </ListItemIcon>
-            <ListItemText primary={task.title}/>
+            <ListItemText primary={primaryText}/>
             <ListItemSecondaryAction>
                 <IconButton onClick={() => setOpenTaskDetail(task.id)}>
                     <EditIcon color="primary"/>
@@ -69,11 +81,16 @@ export default function TaskItem({task, isOpen, setOpenTask, setOpenTaskDetail}:
             </ListItemSecondaryAction>
         </ListItem>
          <Collapse in={isOpen}>
-            <Box className={task.description && classes.detail} borderTop={0}>
+            <Box className={task.description && classes.detail}>
                 <Typography>
                     {task.description}
                 </Typography>
             </Box>
+            {/* <Box className={task.description && classes.detail} borderTop={0}>
+                <Typography>
+                    {task.description}
+                </Typography>
+            </Box> */}
         </Collapse>
         </>
     )
