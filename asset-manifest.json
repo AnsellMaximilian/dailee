@@ -1,22 +1,23 @@
 {
   "files": {
     "main.css": "/dailee/static/css/main.f03c3898.chunk.css",
-    "main.js": "/dailee/static/js/main.e619a8ba.chunk.js",
-    "main.js.map": "/dailee/static/js/main.e619a8ba.chunk.js.map",
+    "main.js": "/dailee/static/js/main.4c6da5a7.chunk.js",
+    "main.js.map": "/dailee/static/js/main.4c6da5a7.chunk.js.map",
     "runtime-main.js": "/dailee/static/js/runtime-main.e72ea2b0.js",
     "runtime-main.js.map": "/dailee/static/js/runtime-main.e72ea2b0.js.map",
-    "static/js/2.7bf730f4.chunk.js": "/dailee/static/js/2.7bf730f4.chunk.js",
-    "static/js/2.7bf730f4.chunk.js.map": "/dailee/static/js/2.7bf730f4.chunk.js.map",
+    "static/js/2.da44b148.chunk.js": "/dailee/static/js/2.da44b148.chunk.js",
+    "static/js/2.da44b148.chunk.js.map": "/dailee/static/js/2.da44b148.chunk.js.map",
     "static/js/3.54b7afa8.chunk.js": "/dailee/static/js/3.54b7afa8.chunk.js",
     "static/js/3.54b7afa8.chunk.js.map": "/dailee/static/js/3.54b7afa8.chunk.js.map",
     "index.html": "/dailee/index.html",
     "static/css/main.f03c3898.chunk.css.map": "/dailee/static/css/main.f03c3898.chunk.css.map",
-    "static/js/2.7bf730f4.chunk.js.LICENSE.txt": "/dailee/static/js/2.7bf730f4.chunk.js.LICENSE.txt"
+    "static/js/2.da44b148.chunk.js.LICENSE.txt": "/dailee/static/js/2.da44b148.chunk.js.LICENSE.txt",
+    "static/media/logo-with-text.c75d9ea7.png": "/dailee/static/media/logo-with-text.c75d9ea7.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e72ea2b0.js",
-    "static/js/2.7bf730f4.chunk.js",
+    "static/js/2.da44b148.chunk.js",
     "static/css/main.f03c3898.chunk.css",
-    "static/js/main.e619a8ba.chunk.js"
+    "static/js/main.4c6da5a7.chunk.js"
   ]
 }
