@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/dailee/static/css/main.f03c3898.chunk.css",
-    "main.js": "/dailee/static/js/main.4c6da5a7.chunk.js",
-    "main.js.map": "/dailee/static/js/main.4c6da5a7.chunk.js.map",
+    "main.js": "/dailee/static/js/main.821eb9eb.chunk.js",
+    "main.js.map": "/dailee/static/js/main.821eb9eb.chunk.js.map",
     "runtime-main.js": "/dailee/static/js/runtime-main.e72ea2b0.js",
     "runtime-main.js.map": "/dailee/static/js/runtime-main.e72ea2b0.js.map",
     "static/js/2.da44b148.chunk.js": "/dailee/static/js/2.da44b148.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.e72ea2b0.js",
     "static/js/2.da44b148.chunk.js",
     "static/css/main.f03c3898.chunk.css",
-    "static/js/main.4c6da5a7.chunk.js"
+    "static/js/main.821eb9eb.chunk.js"
   ]
 }
