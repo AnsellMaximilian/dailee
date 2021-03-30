@@ -4,9 +4,12 @@ import { auth } from '../firebase/config'
 import TaskForm from '../components/TaskForm'
 import { Message, Task } from '../types'
 import TaskList from '../components/TaskList'
-import { Fab, makeStyles } from '@material-ui/core'
+import { Box, Button, Fab, makeStyles } from '@material-ui/core'
 import { ListAlt } from '@material-ui/icons'
 import TaskReserve from '../components/TaskReserve'
+
+import logoWithText from '../images/logo-with-text.png';
+import { NavLink } from 'react-router-dom'
 
 interface Props {
     tasks: Task[];
@@ -19,6 +22,18 @@ const useStyles = makeStyles(theme => ({
         position: 'fixed',
         bottom: 15,
         right: 15
+    },
+
+    logoWithText: {
+        maxWidth: '100%',
+        width: 300
+    },
+
+    link: {
+        fontWeight: 'bold',
+        '&:hover': {
+            textDecoration: 'none'
+        }
     }
 }))
 
@@ -52,7 +67,12 @@ export default function Home({ tasks, reserveTasks, setMessage }: Props) {
                     </Fab>
                 </div>
                 :
-                <h2>Please Sign Up or Sign In</h2>
+                <Box m={2}>
+                    <img src={logoWithText} alt="logo with text" className={classes.logoWithText}/>
+                    <h2>
+                        <Button variant="contained" color="primary"><NavLink to={process.env.PUBLIC_URL + "/signup"} className={classes.link}>Sign Up</NavLink></Button> or <Button variant="contained" color="primary"><NavLink to={process.env.PUBLIC_URL + "/signin"} className={classes.link}>Sign In</NavLink></Button>
+                    </h2>
+                </Box>
             }
         </div>
     )
