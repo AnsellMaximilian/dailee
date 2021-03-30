@@ -14,7 +14,7 @@ export default function SignIn({setMessage}: Props) {
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
-            .then(() => setMessage({type: 'success', content: 'Success'}))
+            .then(() => setMessage({type: 'success', content: `Successfully signed in as ${email}`}))
             .catch((err: {message: string}) => setMessage({type: 'error', content: err.message}));
     }
 
