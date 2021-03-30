@@ -38,6 +38,11 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]:{
             right: 0
         }
+    },
+
+    list: {
+        overflowY: 'auto',
+        maxHeight: '75vh'
     }
 }))
 
@@ -73,7 +78,7 @@ export default function TaskReserve({reserveTasks, open, user, setMessage, setIs
                         </Box>
                         {reserveTasks.length > 0 ?
                             <>
-                            <List dense>
+                            <List dense className={classes.list}>
                                 {reserveTaskItems}
                             </List>
                             {!!openTaskDetail &&
