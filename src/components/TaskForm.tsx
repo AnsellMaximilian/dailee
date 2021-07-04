@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { firestore } from "../firebase/config";
 import firebase from "firebase";
 import {
+  Box,
   Button,
   Container,
   FormControlLabel,
@@ -10,8 +11,8 @@ import {
   Radio,
   RadioGroup,
   TextField,
+  Typography,
 } from "@material-ui/core";
-// import { ExpandMore } from '@material-ui/icons';
 
 interface Props {
   user: firebase.User;
@@ -21,6 +22,20 @@ const useStyles = makeStyles((theme) => ({
   toggleButton: {
     backgroundColor: theme.palette.grey[50],
     borderRadius: 0,
+  },
+  container: {
+    backgroundColor: theme.palette.background.default,
+    paddingBottom: theme.spacing(1),
+    boxShadow: theme.shadows[3],
+  },
+
+  header: {
+    padding: theme.spacing(1),
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    borderRadius: theme.shape.borderRadius,
   },
 
   formContainer: {
@@ -78,7 +93,8 @@ export default function TaskForm({ user }: Props) {
   };
 
   return (
-    <div>
+    <Box m={3} className={classes.container}>
+      <Typography className={classes.header}>Create Tasks</Typography>
       <Container maxWidth="xs" className={classes.formContainer}>
         <RadioGroup
           aria-label="formMode"
@@ -133,18 +149,13 @@ export default function TaskForm({ user }: Props) {
             </Grid>
 
             <Grid item xs={12}>
-              <Button
-                fullWidth
-                type="submit"
-                variant="contained"
-                color="primary"
-              >
+              <Button type="submit" variant="contained" color="primary">
                 Add
               </Button>
             </Grid>
           </Grid>
         </form>
       </Container>
-    </div>
+    </Box>
   );
 }

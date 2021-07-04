@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
     right: 15,
   },
 
+  mainContainer: {
+    minHeight: "100vh",
+    backgroundColor: theme.palette.grey[200],
+  },
+
   logoWithText: {
     maxWidth: "100%",
     width: 300,
@@ -45,12 +50,12 @@ export default function Home({ tasks, reserveTasks, setMessage }: Props) {
   return (
     <div>
       {auth.currentUser ? (
-        <div>
+        <div className={classes.mainContainer}>
           <Grid container justify="center">
-            <Grid item md={5}>
+            <Grid item xs={12} md={5}>
               <TaskForm user={auth.currentUser} />
             </Grid>
-            <Grid item md={7}>
+            <Grid item xs={12} md={7}>
               <TaskList tasks={tasks} />
             </Grid>
           </Grid>
