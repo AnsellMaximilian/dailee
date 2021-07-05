@@ -45,8 +45,13 @@ const useStyles = makeStyles((theme) => ({
     top: "0",
     left: "50%",
     transform: "translateX(-50%)",
+    transition: "all 0.25s",
     "& img": {
-      height: "60%",
+      // height: "60%",
+      width: "50%",
+    },
+    "&:hover": {
+      height: "200%",
     },
   },
 }));
@@ -57,9 +62,12 @@ export default function Header() {
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
-        <div className={classes.brandContainer}>
+        <NavLink
+          to={process.env.PUBLIC_URL + "/"}
+          className={classes.brandContainer}
+        >
           <img src={brandSVG} alt="brand" />
-        </div>
+        </NavLink>
         <Typography className={classes.userInfo}>
           {auth.currentUser?.email}
         </Typography>
