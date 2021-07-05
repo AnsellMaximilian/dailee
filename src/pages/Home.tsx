@@ -4,11 +4,11 @@ import { auth } from "../firebase/config";
 import TaskForm from "../components/TaskForm";
 import { Message, Task } from "../types";
 import TaskList from "../components/TaskList";
-import { Box, Button, Fab, Grid, makeStyles } from "@material-ui/core";
+import { Box, Fab, Grid, makeStyles, Typography } from "@material-ui/core";
 import { ListAlt } from "@material-ui/icons";
 import TaskReserve from "../components/TaskReserve";
 
-import logoWithText from "../images/logo-with-text.png";
+import heroImg from "../images/hero.svg";
 import { NavLink } from "react-router-dom";
 
 interface Props {
@@ -29,15 +29,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[200],
   },
 
-  logoWithText: {
+  heroImg: {
     maxWidth: "100%",
     width: 400,
   },
 
-  link: {
+  cta: {
+    display: "inline-block",
+    padding: theme.spacing(1, 5),
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: theme.shape.borderRadius,
+    fontSize: "1.25rem",
     fontWeight: "bold",
     "&:hover": {
       textDecoration: "none",
+      filter: "brightness(0.9)",
     },
   },
 
@@ -47,9 +54,18 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     flexWrap: "wrap",
   },
+  hero__title: {
+    marginBottom: theme.spacing(3),
+    "& span": {
+      fontWeight: "bold",
+      color: theme.palette.primary.main,
+    },
+  },
 
   heroLeft: {
-    // margin: theme.spacing(0, 5),dsfsd
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: theme.spacing(3),
+    },
   },
 
   heroRight: {
@@ -58,6 +74,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     "&> div > h2": {
       fontSize: "3rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
     },
   },
 }));
@@ -100,32 +119,19 @@ export default function Home({ tasks, reserveTasks, setMessage }: Props) {
       ) : (
         <Box m={2} className={classes.hero}>
           <Box className={classes.heroLeft}>
-            <img
-              src={logoWithText}
-              alt="logo with text"
-              className={classes.logoWithText}
-            />
+            <img src={heroImg} alt="hero" className={classes.heroImg} />
           </Box>
           <Box className={classes.heroRight}>
             <div>
-              <h2>Start managing your tasks</h2>
-              <Button variant="contained" color="primary">
-                <NavLink
-                  to={process.env.PUBLIC_URL + "/signup"}
-                  className={classes.link}
-                >
-                  Sign Up
-                </NavLink>
-              </Button>{" "}
-              {/* or{" "}
-              <Button variant="contained" color="primary">
-                <NavLink
-                  to={process.env.PUBLIC_URL + "/signin"}
-                  className={classes.link}
-                >
-                  Sign In
-                </NavLink>
-              </Button> */}
+              <Typography variant="h2" className={classes.hero__title}>
+                Start managing your <span>tasks</span>.
+              </Typography>
+              <NavLink
+                to={process.env.PUBLIC_URL + "/signup"}
+                className={classes.cta}
+              >
+                Sign Up
+              </NavLink>
             </div>
           </Box>
         </Box>
