@@ -31,13 +31,33 @@ const useStyles = makeStyles((theme) => ({
 
   logoWithText: {
     maxWidth: "100%",
-    width: 300,
+    width: 400,
   },
 
   link: {
     fontWeight: "bold",
     "&:hover": {
       textDecoration: "none",
+    },
+  },
+
+  hero: {
+    padding: theme.spacing(5),
+    display: "flex",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+  },
+
+  heroLeft: {
+    // margin: theme.spacing(0, 5),dsfsd
+  },
+
+  heroRight: {
+    display: "flex",
+    alignItems: "center",
+    textAlign: "left",
+    "&> div > h2": {
+      fontSize: "3rem",
     },
   },
 }));
@@ -78,31 +98,36 @@ export default function Home({ tasks, reserveTasks, setMessage }: Props) {
           </Fab>
         </div>
       ) : (
-        <Box m={2}>
-          <img
-            src={logoWithText}
-            alt="logo with text"
-            className={classes.logoWithText}
-          />
-          <h2>
-            <Button variant="contained" color="primary">
-              <NavLink
-                to={process.env.PUBLIC_URL + "/signup"}
-                className={classes.link}
-              >
-                Sign Up
-              </NavLink>
-            </Button>{" "}
-            or{" "}
-            <Button variant="contained" color="primary">
-              <NavLink
-                to={process.env.PUBLIC_URL + "/signin"}
-                className={classes.link}
-              >
-                Sign In
-              </NavLink>
-            </Button>
-          </h2>
+        <Box m={2} className={classes.hero}>
+          <Box className={classes.heroLeft}>
+            <img
+              src={logoWithText}
+              alt="logo with text"
+              className={classes.logoWithText}
+            />
+          </Box>
+          <Box className={classes.heroRight}>
+            <div>
+              <h2>Start managing your tasks</h2>
+              <Button variant="contained" color="primary">
+                <NavLink
+                  to={process.env.PUBLIC_URL + "/signup"}
+                  className={classes.link}
+                >
+                  Sign Up
+                </NavLink>
+              </Button>{" "}
+              {/* or{" "}
+              <Button variant="contained" color="primary">
+                <NavLink
+                  to={process.env.PUBLIC_URL + "/signin"}
+                  className={classes.link}
+                >
+                  Sign In
+                </NavLink>
+              </Button> */}
+            </div>
+          </Box>
         </Box>
       )}
     </div>

@@ -4,6 +4,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { auth } from "../firebase/config";
 
+import brandSVG from "../images/logo.svg";
+
 const useStyles = makeStyles((theme) => ({
   link: {
     color: "inherit",
@@ -22,11 +24,30 @@ const useStyles = makeStyles((theme) => ({
 
   toolbar: {
     flexWrap: "wrap",
+    position: "relative",
   },
 
   userInfo: {
     flexGrow: 1,
     textAlign: "left",
+  },
+
+  brandContainer: {
+    width: 100,
+    height: "125%",
+    position: "absolute",
+    backgroundColor: theme.palette.background.default,
+    boxShadow: theme.shadows[4],
+    borderRadius: "0 0 50% 50%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    top: "0",
+    left: "50%",
+    transform: "translateX(-50%)",
+    "& img": {
+      height: "60%",
+    },
   },
 }));
 
@@ -36,6 +57,9 @@ export default function Header() {
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
+        <div className={classes.brandContainer}>
+          <img src={brandSVG} alt="brand" />
+        </div>
         <Typography className={classes.userInfo}>
           {auth.currentUser?.email}
         </Typography>
