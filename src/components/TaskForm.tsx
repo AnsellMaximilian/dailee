@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     paddingBottom: theme.spacing(1),
     boxShadow: theme.shadows[3],
+    position: "sticky",
+    top: 0,
   },
 
   header: {
