@@ -1,13 +1,36 @@
 import React, { useState } from "react";
 import { auth } from "../firebase/config";
-import { Button, Container, TextField } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  TextField,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
 import { Message } from "../types";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: "3rem",
+  },
+
+  heading: {
+    fontSize: "2rem",
+    fontWeight: "bold",
+  },
+
+  button: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 interface Props {
   setMessage: React.Dispatch<React.SetStateAction<Message | null>>;
 }
 
 export default function SignIn({ setMessage }: Props) {
+  const classes = useStyles();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,7 +55,8 @@ export default function SignIn({ setMessage }: Props) {
   };
 
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="xs" className={classes.container}>
+      <Typography className={classes.heading}>Sign In</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           required
@@ -56,7 +80,13 @@ export default function SignIn({ setMessage }: Props) {
           value={password}
           onChange={handleChange}
         />
-        <Button fullWidth variant="contained" color="primary" type="submit">
+        <Button
+          className={classes.button}
+          fullWidth
+          variant="contained"
+          color="primary"
+          type="submit"
+        >
           Sign In
         </Button>
       </form>
