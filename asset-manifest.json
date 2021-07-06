@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/dailee/static/css/main.32da77e8.chunk.css",
-    "main.js": "/dailee/static/js/main.76dca2e1.chunk.js",
-    "main.js.map": "/dailee/static/js/main.76dca2e1.chunk.js.map",
+    "main.css": "/dailee/static/css/main.efbd32a2.chunk.css",
+    "main.js": "/dailee/static/js/main.7cf5ad1d.chunk.js",
+    "main.js.map": "/dailee/static/js/main.7cf5ad1d.chunk.js.map",
     "runtime-main.js": "/dailee/static/js/runtime-main.bb79f28d.js",
     "runtime-main.js.map": "/dailee/static/js/runtime-main.bb79f28d.js.map",
-    "static/js/2.eedc11cc.chunk.js": "/dailee/static/js/2.eedc11cc.chunk.js",
-    "static/js/2.eedc11cc.chunk.js.map": "/dailee/static/js/2.eedc11cc.chunk.js.map",
+    "static/js/2.264b97f6.chunk.js": "/dailee/static/js/2.264b97f6.chunk.js",
+    "static/js/2.264b97f6.chunk.js.map": "/dailee/static/js/2.264b97f6.chunk.js.map",
     "static/js/3.049a61be.chunk.js": "/dailee/static/js/3.049a61be.chunk.js",
     "static/js/3.049a61be.chunk.js.map": "/dailee/static/js/3.049a61be.chunk.js.map",
     "index.html": "/dailee/index.html",
-    "static/css/main.32da77e8.chunk.css.map": "/dailee/static/css/main.32da77e8.chunk.css.map",
-    "static/js/2.eedc11cc.chunk.js.LICENSE.txt": "/dailee/static/js/2.eedc11cc.chunk.js.LICENSE.txt",
+    "static/css/main.efbd32a2.chunk.css.map": "/dailee/static/css/main.efbd32a2.chunk.css.map",
+    "static/js/2.264b97f6.chunk.js.LICENSE.txt": "/dailee/static/js/2.264b97f6.chunk.js.LICENSE.txt",
+    "static/media/cabinet.fa0ffc6b.svg": "/dailee/static/media/cabinet.fa0ffc6b.svg",
     "static/media/hero.2316fa7f.svg": "/dailee/static/media/hero.2316fa7f.svg",
     "static/media/logo.9ec56e1c.svg": "/dailee/static/media/logo.9ec56e1c.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.bb79f28d.js",
-    "static/js/2.eedc11cc.chunk.js",
-    "static/css/main.32da77e8.chunk.css",
-    "static/js/main.76dca2e1.chunk.js"
+    "static/js/2.264b97f6.chunk.js",
+    "static/css/main.efbd32a2.chunk.css",
+    "static/js/main.7cf5ad1d.chunk.js"
   ]
 }
