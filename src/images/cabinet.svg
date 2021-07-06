@@ -14,6 +14,23 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="cabinet.svg">
+   <style type="text/css" >
+      <![CDATA[
+      @keyframes out-document {
+         from, to {
+            transform: translateY(10%);
+         }
+
+         50%, 90% {
+            transform: translateY(0);
+         }
+      }
+      #outDocument {
+         animation: out-document 5s infinite;
+        transform-origin: 0% 0%;
+      }
+      ]]>
+   </style>
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -106,11 +123,13 @@
        style="fill:#d9d900;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 91.530638,166.71114 8.968502,-0.0393 -6.984275,2.21724 h -11.62721 z"
        id="path1137" />
+      <g id="outDocument">
     <path
        id="path1139"
        style="opacity:1;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:0.999999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 295.04883,161.52734 -58.14649,13.13282 v 46.00195 l 58.14649,-13.13281 z"
        transform="matrix(0.26458333,0,0,0.26458333,28.850186,117.01105)" />
+       </g>
     <path
        id="path936"
        style="opacity:1;fill:#999999;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
