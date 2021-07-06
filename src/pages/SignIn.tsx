@@ -10,8 +10,16 @@ import {
 import { Message } from "../types";
 
 const useStyles = makeStyles((theme) => ({
+  background: {
+    height: "100%",
+    backgroundColor: theme.palette.grey[200],
+    paddingTop: "3rem",
+  },
   container: {
-    marginTop: "3rem",
+    background: theme.palette.background.default,
+    padding: theme.spacing(3, 3, 5, 3),
+    boxShadow: theme.shadows[4],
+    borderRadius: theme.shape.borderRadius,
   },
 
   heading: {
@@ -55,41 +63,43 @@ export default function SignIn({ setMessage }: Props) {
   };
 
   return (
-    <Container maxWidth="xs" className={classes.container}>
-      <Typography className={classes.heading}>Sign In</Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          required
-          fullWidth
-          type="email"
-          margin="normal"
-          variant="outlined"
-          label="Email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          fullWidth
-          type="password"
-          margin="normal"
-          variant="outlined"
-          label="Password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-        <Button
-          className={classes.button}
-          fullWidth
-          variant="contained"
-          color="primary"
-          type="submit"
-        >
-          Sign In
-        </Button>
-      </form>
-    </Container>
+    <div className={classes.background}>
+      <Container maxWidth="xs" className={classes.container}>
+        <Typography className={classes.heading}>Sign In</Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            required
+            fullWidth
+            type="email"
+            margin="normal"
+            variant="outlined"
+            label="Email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+          <TextField
+            required
+            fullWidth
+            type="password"
+            margin="normal"
+            variant="outlined"
+            label="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+          <Button
+            className={classes.button}
+            fullWidth
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Sign In
+          </Button>
+        </form>
+      </Container>
+    </div>
   );
 }
