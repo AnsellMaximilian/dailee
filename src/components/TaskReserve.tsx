@@ -109,7 +109,6 @@ export default function TaskReserve({
       <Container className={classes.container}>
         <ClickAwayListener
           onClickAway={() => {
-            console.log("faggot");
             setIsTaskReserveOpen(false);
           }}
         >
