@@ -58,7 +58,10 @@ export default function TaskReserveItem({
     firestore
       .collection("tasks")
       .add({
-        ...reserveTask,
+        title: reserveTask.title,
+        description: reserveTask.description,
+        timeFrame: reserveTask.timeFrame,
+        importance: reserveTask.importance,
         user: user.uid,
       })
       .then(() => {

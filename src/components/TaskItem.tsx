@@ -26,8 +26,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
     padding: theme.spacing(1, 2),
+    cursor: "pointer",
     "&:hover": {
       backgroundColor: theme.palette.action.hover,
+    },
+    "&:active": {
+      backgroundColor: theme.palette.action.activatedOpacity,
     },
   },
   taskTitle: {
