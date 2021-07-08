@@ -153,20 +153,35 @@ export default function TaskForm({ user }: Props) {
                     setImportance(parseInt(e.target.value as string));
                   }}
                 >
-                  <MenuItem value={1} style={{ color: importanceValues[1] }}>
-                    Trivial
+                  <MenuItem
+                    value={1}
+                    style={{ color: importanceValues[1].color }}
+                  >
+                    {importanceValues[1].label}
                   </MenuItem>
-                  <MenuItem value={2} style={{ color: importanceValues[2] }}>
-                    Dismissable
+                  <MenuItem
+                    value={2}
+                    style={{ color: importanceValues[2].color }}
+                  >
+                    {importanceValues[2].label}
                   </MenuItem>
-                  <MenuItem value={3} style={{ color: importanceValues[3] }}>
-                    Normal
+                  <MenuItem
+                    value={3}
+                    style={{ color: importanceValues[3].color }}
+                  >
+                    {importanceValues[3].label}
                   </MenuItem>
-                  <MenuItem value={4} style={{ color: importanceValues[4] }}>
-                    Important
+                  <MenuItem
+                    value={4}
+                    style={{ color: importanceValues[4].color }}
+                  >
+                    {importanceValues[4].label}
                   </MenuItem>
-                  <MenuItem value={5} style={{ color: importanceValues[5] }}>
-                    Urgent
+                  <MenuItem
+                    value={5}
+                    style={{ color: importanceValues[5].color }}
+                  >
+                    {importanceValues[5].label}
                   </MenuItem>
                 </Select>
               </FormControl>
