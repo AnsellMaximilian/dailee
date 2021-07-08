@@ -49,6 +49,7 @@ const App = () => {
               title: "Unavailable",
               description: "Unavailable",
               timeFrame: "Unavailable",
+              importance: 1,
               ...docSnapshot.data(),
             };
             return task;
@@ -67,6 +68,7 @@ const App = () => {
               title: "Unavailable",
               description: "Unavailable",
               timeFrame: "Unavailable",
+              importance: 1,
               ...docSnapshot.data(),
             };
             return reserveTask;

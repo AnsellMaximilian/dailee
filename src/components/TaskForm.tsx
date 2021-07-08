@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { firestore } from "../firebase/config";
 import firebase from "firebase";
+import importanceValues from "../utils/importance";
 import {
   Box,
   Button,
   Container,
   FormControlLabel,
+  FormControl,
   Grid,
   makeStyles,
   Radio,
   RadioGroup,
   TextField,
+  InputLabel,
   Typography,
+  Select,
+  MenuItem,
 } from "@material-ui/core";
 
 interface Props {
@@ -57,6 +62,7 @@ export default function TaskForm({ user }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [timeFrame, setTimeFrame] = useState("");
+  const [importance, setImportance] = useState(1);
   const [formMode, setformMode] = useState<"tasks" | "reserveTasks">("tasks");
 
   const handleChange: React.ChangeEventHandler<
@@ -85,6 +91,7 @@ export default function TaskForm({ user }: Props) {
       title,
       description,
       timeFrame,
+      importance,
     };
 
     firestore.collection(formMode).add(task).then().catch();
@@ -128,14 +135,41 @@ export default function TaskForm({ user }: Props) {
             </Grid>
 
             <Grid item xs={4}>
-              <TextField
+              {/* <TextField
                 fullWidth
                 variant="outlined"
                 type="time"
                 name="time-frame"
                 onChange={handleChange}
                 value={timeFrame}
-              />
+              /> */}
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel>Importance</InputLabel>
+                <Select
+                  label="Importance"
+                  fullWidth
+                  value={importance}
+                  onChange={(e) => {
+                    setImportance(parseInt(e.target.value as string));
+                  }}
+                >
+                  <MenuItem value={1} style={{ color: importanceValues[1] }}>
+                    Trivial
+                  </MenuItem>
+                  <MenuItem value={2} style={{ color: importanceValues[2] }}>
+                    Dismissable
+                  </MenuItem>
+                  <MenuItem value={3} style={{ color: importanceValues[3] }}>
+                    Normal
+                  </MenuItem>
+                  <MenuItem value={4} style={{ color: importanceValues[4] }}>
+                    Important
+                  </MenuItem>
+                  <MenuItem value={5} style={{ color: importanceValues[5] }}>
+                    Urgent
+                  </MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
 
             <Grid item xs={12}>
