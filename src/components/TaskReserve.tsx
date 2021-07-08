@@ -107,7 +107,12 @@ export default function TaskReserve({
       unmountOnExit
     >
       <Container className={classes.container}>
-        <ClickAwayListener onClickAway={() => setIsTaskReserveOpen(false)}>
+        <ClickAwayListener
+          onClickAway={() => {
+            console.log("faggot");
+            setIsTaskReserveOpen(false);
+          }}
+        >
           <div>
             <Box p={1} className={classes.header}>
               <Typography>Task Reserve</Typography>

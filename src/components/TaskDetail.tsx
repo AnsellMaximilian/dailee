@@ -5,8 +5,12 @@ import {
   DialogTitle,
   Grid,
   TextField,
+  Select,
+  InputLabel,
+  FormControl,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import importanceValues from "../utils/importance";
 import { Task } from "../types";
 
 interface Props {
@@ -24,6 +28,7 @@ export default function TaskDetail({
 }: Props) {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
+  const [importance, setImportance] = useState(1);
   const [timeFrame, setTimeFrame] = useState(task.timeFrame);
 
   const handleChange: React.ChangeEventHandler<
@@ -43,7 +48,7 @@ export default function TaskDetail({
       title,
       description,
       timeFrame,
-      importance: 1,
+      importance: importance as 1 | 2 | 3 | 4 | 5,
     });
   };
 
@@ -67,14 +72,58 @@ export default function TaskDetail({
             </Grid>
 
             <Grid item xs={4}>
-              <TextField
+              {/* <TextField
                 fullWidth
                 variant="outlined"
                 type="time"
                 name="time-frame"
                 onChange={handleChange}
                 value={timeFrame}
-              />
+              /> */}
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel>Importance</InputLabel>
+                <Select
+                  native
+                  label="Importance"
+                  fullWidth
+                  value={importance}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setImportance(parseInt(e.target.value as string));
+                  }}
+                >
+                  <option
+                    value={1}
+                    style={{ color: importanceValues[1].color }}
+                  >
+                    {importanceValues[1].label}
+                  </option>
+                  <option
+                    value={2}
+                    style={{ color: importanceValues[2].color }}
+                  >
+                    {importanceValues[2].label}
+                  </option>
+                  <option
+                    value={3}
+                    style={{ color: importanceValues[3].color }}
+                  >
+                    {importanceValues[3].label}
+                  </option>
+                  <option
+                    value={4}
+                    style={{ color: importanceValues[4].color }}
+                  >
+                    {importanceValues[4].label}
+                  </option>
+                  <option
+                    value={5}
+                    style={{ color: importanceValues[5].color }}
+                  >
+                    {importanceValues[5].label}
+                  </option>
+                </Select>
+              </FormControl>
             </Grid>
 
             <Grid item xs={12}>
