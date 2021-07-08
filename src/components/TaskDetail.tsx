@@ -28,7 +28,7 @@ export default function TaskDetail({
 }: Props) {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
-  const [importance, setImportance] = useState(1);
+  const [importance, setImportance] = useState(task.importance);
   const [timeFrame, setTimeFrame] = useState(task.timeFrame);
 
   const handleChange: React.ChangeEventHandler<
@@ -89,7 +89,9 @@ export default function TaskDetail({
                   value={importance}
                   onChange={(e) => {
                     e.stopPropagation();
-                    setImportance(parseInt(e.target.value as string));
+                    setImportance(
+                      parseInt(e.target.value as string) as 1 | 2 | 3 | 4 | 5
+                    );
                   }}
                 >
                   <option
