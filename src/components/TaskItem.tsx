@@ -99,7 +99,7 @@ export default function TaskItem({
           <IconButton onClick={() => setOpenTaskDetail(task.id)}>
             <EditIcon color="primary" />
           </IconButton>
-          <ImportanceBar importance={1} />
+          <ImportanceBar importance={3} />
         </ListItemSecondaryAction>
       </ListItem>
       <Collapse in={isOpen}>
