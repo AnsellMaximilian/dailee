@@ -4,7 +4,10 @@ import importanceValues from "../utils/importance";
 
 const useStyles = makeStyles((theme) => ({
   barContainer: {
-    display: "inline",
+    display: "inline-block",
+    height: "1.25rem",
+    width: "1.25rem",
+    padding: theme.spacing(1),
   },
   bar: {},
 }));

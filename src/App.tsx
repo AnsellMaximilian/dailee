@@ -41,6 +41,7 @@ const App = () => {
       tasksListener = firestore
         .collection("tasks")
         .where("user", "==", user.uid)
+        .orderBy("importance", "desc")
         .onSnapshot((snapshot) => {
           let tasks: Task[] = snapshot.docs.map((docSnapshot) => {
             let task: Task = {

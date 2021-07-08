@@ -2,10 +2,6 @@ import {
   Box,
   Collapse,
   IconButton,
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
   makeStyles,
   Typography,
 } from "@material-ui/core";
@@ -26,9 +22,21 @@ interface Props {
 const useStyles = makeStyles((theme) => ({
   taskItem: {
     transition: "transform 0.5s",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: theme.spacing(1, 2),
     "&:hover": {
       backgroundColor: theme.palette.action.hover,
     },
+  },
+  taskTitle: {
+    flex: 1,
+    textAlign: "left",
+  },
+  secondaryActions: {
+    display: "flex",
+    alignItems: "center",
   },
   deleted: {
     transform: "translateX(200%)",
@@ -75,33 +83,23 @@ export default function TaskItem({
     else setOpenTask(task.id);
   };
 
-  const primaryText = (
-    <span>
-      {task.title}
-      {!!(task.timeFrame && task.timeFrame !== "00:00") && (
-        <span className={classes.timeFrame}> - {task.timeFrame}</span>
-      )}
-    </span>
-  );
-
   return (
     <>
-      <ListItem
-        button
+      <div
         className={`${classes.taskItem} ${checked && classes.deleted}`}
         onClick={toggleDetails}
       >
-        <ListItemIcon>
+        <div>
           <CheckBox checked={checked} completeTask={completeTask} />
-        </ListItemIcon>
-        <ListItemText primary={primaryText} />
-        <ListItemSecondaryAction>
+        </div>
+        <div className={classes.taskTitle}>{task.title}</div>
+        <div className={classes.secondaryActions}>
+          <ImportanceBar importance={task.importance} />
           <IconButton onClick={() => setOpenTaskDetail(task.id)}>
             <EditIcon color="primary" />
           </IconButton>
-          <ImportanceBar importance={3} />
-        </ListItemSecondaryAction>
-      </ListItem>
+        </div>
+      </div>
       <Collapse in={isOpen}>
         <Box className={task.description && classes.detail}>
           <Typography>{task.description}</Typography>
