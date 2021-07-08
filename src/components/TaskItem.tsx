@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import { firestore } from "../firebase/config";
 import { Task } from "../types";
 import CheckBox from "./CheckBox";
+import ImportanceBar from "./ImportanceBar";
 
 interface Props {
   isOpen: boolean;
@@ -98,17 +99,13 @@ export default function TaskItem({
           <IconButton onClick={() => setOpenTaskDetail(task.id)}>
             <EditIcon color="primary" />
           </IconButton>
+          <ImportanceBar importance={1} />
         </ListItemSecondaryAction>
       </ListItem>
       <Collapse in={isOpen}>
         <Box className={task.description && classes.detail}>
           <Typography>{task.description}</Typography>
         </Box>
-        {/* <Box className={task.description && classes.detail} borderTop={0}>
-                <Typography>
-                    {task.description}
-                </Typography>
-            </Box> */}
       </Collapse>
     </>
   );

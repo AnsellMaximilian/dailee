@@ -1,9 +1,9 @@
 const importance = {
-  1: "blue",
-  2: "green",
-  3: "yellow",
-  4: "orange",
-  5: "red",
+  1: "#2FEE1F",
+  2: "#1AC72C",
+  3: "#FFBB37",
+  4: "#FF6B00",
+  5: "#FF0000",
 };
 
 export default importance;
